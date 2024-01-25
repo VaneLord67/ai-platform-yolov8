@@ -180,7 +180,7 @@ void utils::show(const std::vector<std::vector<utils::Box>>& objectss, const std
 	const int& cvDelayTime, std::vector<cv::Mat>& imgsBatch, cpp_ai_utils::CppAiHelper& cppAiHelper, const std::string& queueName)
 {
 	std::string windows_title = "image";
-	if(!imgsBatch[0].empty())
+	if(!imgsBatch[0].empty() && queueName == "")
 	{
 		cv::namedWindow(windows_title, cv::WINDOW_NORMAL | cv::WINDOW_KEEPRATIO);  // allow window resize(Linux)
 
@@ -239,6 +239,7 @@ void utils::show(const std::vector<std::vector<utils::Box>>& objectss, const std
 
 		// camera_stream process
 		if (queueName != "") {
+			cppAiHelper.write_frame_to_video(imgsBatch[bi]);
 			cppAiHelper.push_frame_to_redis(imgsBatch[bi]);
 
 			std::stringstream boxJson;
@@ -263,6 +264,7 @@ void utils::show(const std::vector<std::vector<utils::Box>>& objectss, const std
 			boxJson << "]";
 
 			cppAiHelper.push_str_to_redis(boxJson.str());
+			cppAiHelper.write_json_to_file(boxJson.str());
 
 		}
 

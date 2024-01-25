@@ -219,7 +219,7 @@ std::vector<std::vector<utils::Box>> main_func(int argc, char** argv)
 		sample::gLogInfo << "push log to redis done." << std::endl;
 		return results;
 	}
-	if (source == utils::InputStream::VIDEO) {
+	if (source == utils::InputStream::VIDEO || source == utils::InputStream::CAMERA) {
 		cppAiHelper.init_video_writer(capture);
 	}
 

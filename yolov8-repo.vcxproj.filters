@@ -38,9 +38,6 @@
     <ClInclude Include="utils\common_include.h">
       <Filter>utils</Filter>
     </ClInclude>
-    <ClInclude Include="utils\kernel_function.h">
-      <Filter>utils</Filter>
-    </ClInclude>
     <ClInclude Include="utils\utils.h">
       <Filter>utils</Filter>
     </ClInclude>
@@ -60,6 +57,9 @@
     </CudaCompile>
     <CudaCompile Include="yolov8\decode_yolov8.h">
       <Filter>源文件</Filter>
+    </CudaCompile>
+    <CudaCompile Include="utils\kernel_function.h">
+      <Filter>头文件</Filter>
     </CudaCompile>
   </ItemGroup>
 </Project>
