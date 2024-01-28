@@ -313,7 +313,11 @@ std::vector<std::vector<utils::Box>> main_func_wrapper(const std::vector<std::st
 	return r;
 }
 
+#ifdef _WIN32
 PYBIND11_MODULE(app_yolo, m) {
+#else
+PYBIND11_MODULE(libapp_yolo, m) {
+#endif
 	m.doc() = "yolov8 pyd"; // optional module docstring
 
 	py::class_<utils::Box>(m, "Box")
